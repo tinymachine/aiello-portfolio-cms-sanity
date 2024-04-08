@@ -27,14 +27,7 @@ export default {
       validation: (rule: any) => rule.required()
     },
     {
-      name: 'colorVerticalRule',
-      title: 'Vertical Rule Color',
-      type: 'color',
-      description: `This is the color of the vertical line that runs down the length of the page.`,
-      validation: (rule: any) => rule.required()
-    },
-    {
-      name: 'projectSetsAndOrder',
+      name: 'projectSets',
       title: 'Project Sets',
       type: 'array',
       description: `Determines which project sets appear on the page, and in which order.`,
@@ -43,6 +36,13 @@ export default {
         to: { type: 'projectSet' }
       }],
       validation: (rule: any) => rule.unique()
+    },
+    {
+      name: 'colorVerticalRule',
+      title: 'Vertical Rule Color',
+      type: 'color',
+      description: `This is the color of the vertical line that runs down the length of the page.`,
+      validation: (rule: any) => rule.required()
     },
   ]
 }

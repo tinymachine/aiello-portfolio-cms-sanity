@@ -71,9 +71,13 @@ export default defineConfig({
               ),
             S.divider(),
 
-            // Regular document types
+            // Remaining document types
             ...S.documentTypeListItems().filter(
-              listItem => !(new Set([...singletonTypes, ...hiddenDocumentTypes]).has(listItem.getId()))
+              listItem =>
+                !(new Set([
+                  ...singletonTypes,
+                  ...hiddenDocumentTypes
+                ]).has(listItem.getId() as string))
             )
           ]),
     }),
