@@ -12,6 +12,13 @@ export default defineType({
       validation: (rule: any) => rule.required()
     },
     {
+      name: 'projectSet',
+      title: 'Project Set',
+      type: 'reference',
+      to: {type: 'projectSet'},
+      validation: (rule: any) => rule.required(),
+    },
+    {
       name: 'projectType',
       title: 'Project Type',
       type: 'string',
@@ -49,14 +56,8 @@ export default defineType({
       name: 'stills',
       title: 'Stills',
       type: 'array',
-      of: [
-        {
-          name: 'inline',
-          title: 'Still',
-          type: 'image',
-          validation: (rule: any) => rule.required()
-        }
-      ]
+      of: [{ type: 'image' }],
+      options: { layout: 'grid' }
     },
     defineField({
       name: 'featuredStill',
