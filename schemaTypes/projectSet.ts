@@ -1,5 +1,6 @@
 import {defineType} from 'sanity'
-
+import { FolderIcon } from '@sanity/icons'
+  
 export default defineType({
   name: 'projectSet',
   title: 'Project Set',
@@ -22,5 +23,16 @@ export default defineType({
       `,
       validation: (rule: any) => rule.required(),
     },
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'heading',
+    },
+    prepare({ title }) {
+      return {
+        title,
+        media: FolderIcon,
+      }
+    }
+  }
 })
