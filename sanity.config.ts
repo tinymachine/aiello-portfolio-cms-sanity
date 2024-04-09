@@ -18,6 +18,7 @@ const singletonTypes = new Set([
 ])
 
 const hiddenDocumentTypes = new Set([
+  "project",
   "projectSet"
 ])
 
@@ -34,7 +35,6 @@ export default defineConfig({
         S.list()
           .title("Content")
           .items([
-
             // Our singleton type has a list item with a custom child
             S.listItem()
               .title("Settings")
@@ -68,8 +68,21 @@ export default defineConfig({
                   .schemaType("about")
                   .documentId("bec7189e-36af-4acc-af7f-672dab53f11f")
                   .title('About')
-              ),
+            ),
+            
             S.divider(),
+
+            S.listItem()
+              .title('Projects')
+              .child(
+                S.documentTypeList('projectSet')
+                  .child((projectSetId) =>
+                    S.documentList()
+                      .title('Projects')
+                      .filter('_type == "project" && $projectSetId == projectSet._ref')
+                      .params({projectSetId})
+                  )
+              ),
 
             // Remaining document types
             ...S.documentTypeListItems().filter(
