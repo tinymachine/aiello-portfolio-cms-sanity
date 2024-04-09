@@ -3,7 +3,8 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {colorInput} from '@sanity/color-input'
-import {PresentationIcon, CogIcon, UserIcon} from '@sanity/icons'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
+import {PresentationIcon, CogIcon, UserIcon, FolderIcon} from '@sanity/icons'
 
 const singletonActions = new Set([
   "publish",
@@ -22,6 +23,17 @@ const hiddenDocumentTypes = new Set([
   "projectSet"
 ])
 
+const projectSets = [
+  {
+    id: "b7cf6380-f6fd-4781-9788-19a9e0932b7f",
+    title: 'Narrative', // as of 4/2024
+  },
+  {
+    id: "8e9520f3-1ee1-4593-a109-e8e15359461b", // 'Short Form' as of 4/2024
+    title: 'Short Form', // as of 4/2024
+  }
+]
+
 export default defineConfig({
   name: 'default',
   title: 'drewaiello.com CMS',
@@ -31,7 +43,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S, context) =>
         S.list()
           .title("Content")
           .items([
@@ -68,21 +80,34 @@ export default defineConfig({
                   .schemaType("about")
                   .documentId("bec7189e-36af-4acc-af7f-672dab53f11f")
                   .title('About')
-            ),
+              ),
             
             S.divider(),
 
-            S.listItem()
-              .title('Projects')
-              .child(
-                S.documentTypeList('projectSet')
-                  .child((projectSetId) =>
-                    S.documentList()
-                      .title('Projects')
-                      .filter('_type == "project" && $projectSetId == projectSet._ref')
-                      .params({projectSetId})
-                  )
-              ),
+            ...projectSets.map(({title: projectSetTitle, id: projectSetId}) => 
+              orderableDocumentListDeskItem({
+                type: 'project',
+                title: `${projectSetTitle} Projects`,
+                id: `project-set-${projectSetId}`,
+                filter: `projectSet._ref == $projectSetId`,
+                params: { projectSetId },
+                icon: FolderIcon,
+                S,
+                context,
+              })
+            ),
+            
+            // S.listItem()
+            //   .title('Projects')
+            //   .child(
+            //     S.documentTypeList('projectSet')
+            //       .child(projectSetId =>
+            //         S.documentList()
+            //           .title('Projects')
+            //           .filter('_type == "project" && $projectSetId == projectSet._ref')
+            //           .params({ projectSetId })
+            //       )
+            //   ),
 
             // Remaining document types
             ...S.documentTypeListItems().filter(
@@ -92,7 +117,7 @@ export default defineConfig({
                   ...hiddenDocumentTypes
                 ]).has(listItem.getId() as string))
             )
-          ]),
+          ])
     }),
     visionTool(),
     colorInput()
