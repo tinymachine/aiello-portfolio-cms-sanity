@@ -100,6 +100,7 @@ const OpenGraphPreview = (props) => {
               style={{
                 fontSize: '0.925em',
                 fontWeight: 600,
+                color: '#000',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
