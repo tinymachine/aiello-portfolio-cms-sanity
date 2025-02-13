@@ -68,12 +68,11 @@ const OpenGraphPreview = (props) => {
   return (
     <Card
       tone="default"
-      border
-      radius={2}
-      shadow={1}
+      radius={3}
       style={{
+        overflow: 'hidden',
         width: '600px',
-        maxWidth: '100%',
+        maxWidth: 'calc(100% - 2em)',
         margin: '2em auto 0',
         boxShadow: '0 4px 36px -12px rgba(0,0,0,0.5)'
       }}
@@ -87,14 +86,14 @@ const OpenGraphPreview = (props) => {
             style={{
               display: 'block',
               width: '100%',
-              height: '315px',
+              height: 'auto',
               objectFit: 'cover'
             }}
           />
         )}
 
         {/* Text Content */}
-        <Box padding={4} style={{ backgroundColor: 'white' }}>
+        <Box paddingX={4} paddingY={3} style={{ backgroundColor: 'white' }}>
           <Stack space={1}>
             <h2
               style={{
@@ -108,7 +107,7 @@ const OpenGraphPreview = (props) => {
                 margin: 0
               }}
             >
-              {title || 'Default Page Title'}
+              {title || '[Default Page Title]'}
             </h2>
 
             <h3
@@ -124,7 +123,7 @@ const OpenGraphPreview = (props) => {
                 margin: 0
               }}
             >
-              {description || 'Default description for the page'}
+              {description || '[Default description for the page]'}
             </h3>
           </Stack>
         </Box>
