@@ -1,6 +1,6 @@
-import {defineType} from 'sanity'
+import { defineType } from 'sanity'
 import { FolderIcon } from '@sanity/icons'
-  
+
 export default defineType({
   name: 'projectSet',
   title: 'Project Set',
@@ -11,7 +11,7 @@ export default defineType({
       name: 'heading',
       title: 'Title',
       type: 'string',
-      validation: (rule: any) => rule.required(),
+      validation: (rule: any) => rule.required()
     },
     {
       name: 'fallbackProjectTypeLabel',
@@ -19,19 +19,19 @@ export default defineType({
       type: 'string',
       description: `
         For example, "Feature" for the Narrative project set. This label
-        that will appear on if you don't set a project type on a specific project.
+        will be used if you don't set a project type on a specific project.
       `,
-      validation: (rule: any) => rule.required(),
-    },
+      validation: (rule: any) => rule.required()
+    }
   ],
   preview: {
     select: {
-      title: 'heading',
+      title: 'heading'
     },
     prepare({ title }) {
       return {
         title,
-        media: FolderIcon,
+        media: FolderIcon
       }
     }
   }
