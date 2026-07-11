@@ -1,5 +1,5 @@
 import { defineType } from 'sanity'
-import { FolderIcon } from '@sanity/icons'
+import { FolderIcon } from '../components/icons'
 
 export default defineType({
   name: 'projectSet',

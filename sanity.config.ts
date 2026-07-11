@@ -4,7 +4,7 @@ import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
 import { colorInput } from '@sanity/color-input'
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
-import { PresentationIcon, CogIcon, UserIcon, FolderIcon } from '@sanity/icons'
+import { PresentationIcon, CogIcon, UserIcon, FolderIcon } from './components/icons'
 import { OpenGraphPreview } from './components/OpenGraphPreview'
 
 const singletonActions = new Set(['publish', 'discardChanges', 'restore'])
