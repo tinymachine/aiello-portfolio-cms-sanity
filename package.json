@@ -21,11 +21,11 @@
     "@sanity/image-url": "^2.1.1",
     "@sanity/orderable-document-list": "^2.0.0",
     "@sanity/ui": "^3.2.0",
-    "@sanity/vision": "^5.30.0",
+    "@sanity/vision": "^6.4.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-is": "^19.2.7",
-    "sanity": "^5.30.0",
+    "sanity": "^6.4.0",
     "styled-components": "^6.4.2"
   },
   "devDependencies": {
@@ -37,12 +37,20 @@
   },
   "overrides": {
     "prismjs": "^1.30.0",
-    "glob": "^10.5.0"
+    "glob": "^10.5.0",
+    "js-yaml": "^4.1.1",
+    "uuid": "^11.1.1",
+    "typeid-js": "^1.2.0",
+    "smol-toml": "^1.7.0"
   },
   "//": {
     "overrides": {
       "prismjs": "Fixes CVE-2024-53382 (DOM Clobbering). Required by @sanity/orderable-document-list → @sanity/ui → react-refractor → refractor → prismjs",
-      "glob": "Fixes CVE-2025-64756 (command injection). Required by sanity → archiver/rimraf → glob"
+      "glob": "Fixes CVE-2025-64756 (command injection). Required by sanity → archiver/rimraf → glob",
+      "js-yaml": "Fixes prototype pollution / quadratic DoS (GHSA-mh29-5h37-fv8m, GHSA-h67p-54hq-rp68). Required by sanity → @sanity/cli → @vercel/frameworks → js-yaml",
+      "uuid": "Fixes missing buffer bounds check (GHSA-w5hq-g745-h8pq). Required by sanity → @sanity/id-utils/@sanity/uuid/@sanity/cli → uuid",
+      "typeid-js": "Pulls in vulnerable uuid transitively. Required by sanity → @sanity/telemetry / @sanity/cli → typeid-js",
+      "smol-toml": "Fixes DoS via TOML comment parsing (GHSA-v3rj-xjv7-4jmq). Required by sanity → @sanity/cli → @vercel/frameworks → smol-toml"
     }
   },
   "prettier": {
