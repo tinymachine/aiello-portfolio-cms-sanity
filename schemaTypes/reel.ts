@@ -24,7 +24,13 @@ export default {
         before you click to view the reel.
       `,
       of: [
-        { type: 'image' }
+        {
+          type: 'image',
+          validation: (rule: any) =>
+            rule.custom((value: any) =>
+              value?.asset ? true : 'Upload an image or remove this item'
+            )
+        }
       ],
       options: {
         layout: 'list'
